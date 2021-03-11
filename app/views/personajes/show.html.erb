@@ -1,0 +1,14 @@
+<br>
+
+<div class="text-center">
+  <div class="h1"> <%= "#{@personaje.nombre}" %></div>
+  <%= image_tag("#{@personaje.clase}.jpg", class: "img-fluid img-thumbnail") %>
+  <br>
+  <br>
+  <h4> <%= "Nivel: #{@personaje.nivel}" %> </h4>
+  <h4> <%= "Clase: #{@personaje.clase}" %> </h4>
+  <h4> <%= "Vida: #{@personaje.hp_actual} / #{@personaje.hp_max} " %> </h4>
+  <h4> <%= "Mana: #{@personaje.mana_actual} / #{@personaje.mana_max} " %> </h4>
+  <h4> <%= "Daño: #{@personaje.daño_min} / #{@personaje.daño_max} " %> </h4>
+  <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Volver', personajes_path %></button>
+</div>

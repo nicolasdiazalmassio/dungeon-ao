@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_10_124549) do
+ActiveRecord::Schema.define(version: 2021_03_11_120113) do
+
+  create_table "personajes", force: :cascade do |t|
+    t.integer "nivel"
+    t.integer "exp"
+    t.string "nombre"
+    t.string "clase"
+    t.integer "mana_max"
+    t.integer "mana_actual"
+    t.integer "hp_max"
+    t.integer "hp_actual"
+    t.integer "evasion"
+    t.integer "daño_min"
+    t.integer "daño_max"
+    t.boolean "arma", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "usuario_id"
+  end
 
   create_table "usuarios", force: :cascade do |t|
     t.string "email", default: "", null: false

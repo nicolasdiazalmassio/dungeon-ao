@@ -1,0 +1,25 @@
+<h2 class="text-center">Mis personajes</h2>
+<br>
+
+<div class="container">
+  <% @personajes.each do |personaje| %>
+
+      <div class="card mx-auto text-center" style="width: 25rem;">
+        <div class="card-header">
+          <%= personaje.nombre %>
+        </div>
+        <div class="card-body">
+          <div class="text-center">
+            <%= image_tag("#{personaje.clase}.jpg", class: "img-fluid img-thumbnail") %>
+          </div>
+          <br>
+          <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Ver estadisticas', personaje_path(personaje) %></button>
+          <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Entrar en campaña', "#" %></button>
+        </div>
+        <div class="card-footer text-muted">
+          <%= "Nivel: #{personaje.nivel} " %>
+        </div>
+      </div>
+  <br>
+  <% end %>
+</div>

@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= render 'shared/errors', obj: @personaje %>
+      <%= form_with(model: @personaje, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+        <div class="form-group row">
+          <%= f.label :nombre, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :nombre, class: "form-control shadow rounded", placeholder: "Nombre del personaje" %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= f.label :clase, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <div class="selectWrapper">
+              <%= f.select(:clase, [ ['Guerrero', "Guerrero"], ['Mago', "Mago"] ], class: "input-group-text" )%>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row justify-content-center">
+          <%= f.submit class: "btn btn-outline-light btn-lg" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="mb-3">
+      <%= link_to '[ Cancelar y volver a la pagina de inicio ]', root_path, class: "text-info" %>
+    </div>
+  </div>
+</div>
