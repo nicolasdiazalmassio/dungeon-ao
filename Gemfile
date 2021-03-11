@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'bootstrap-sass'
+gem 'bootstrap_progressbar'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

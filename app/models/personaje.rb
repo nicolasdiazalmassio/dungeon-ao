@@ -4,4 +4,5 @@ class Personaje < ApplicationRecord
                 uniqueness: { case_sensitive: false }, 
                 length: { minimum: 3, maximum: 15 }
   validates :clase, presence: true
+
 end

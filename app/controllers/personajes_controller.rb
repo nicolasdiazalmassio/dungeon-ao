@@ -40,10 +40,24 @@ class PersonajesController < ApplicationController
 
   def show
     @personaje = Personaje.find(params[:id])
+    @hp = porcentajehp
+    @mp = porcentajemp
   end
 
 end
 private
 def personaje_params
   params.require(:personaje).permit(:nombre, :clase, :nivel, :exp, :mana_max, :mana_actual, :hp_max, :hp_actual, :daño_min, :daño_max, :arma)
+end
+
+def porcentajehp
+  hp = (@personaje.hp_actual/@personaje.hp_max)*100
+end
+
+def porcentajemp
+  if @personaje.mana_actual == 0 || @personaje.mana_max == 0
+    mp = 0
+  else
+  mp = (@personaje.mana_actual/@personaje.mana_max)*100
+  end
 end
