@@ -1,0 +1,3 @@
+class ObjetosController < ApplicationController
+
+end 

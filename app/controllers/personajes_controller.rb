@@ -1,4 +1,5 @@
 class PersonajesController < ApplicationController
+  
 	def new
     @personaje = Personaje.new
 	end

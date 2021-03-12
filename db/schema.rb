@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_221025) do
+ActiveRecord::Schema.define(version: 2021_03_12_135147) do
+
+  create_table "inventarios", force: :cascade do |t|
+    t.integer "personaje_id"
+    t.integer "objeto_id"
+    t.integer "cantidad"
+  end
 
   create_table "npcs", force: :cascade do |t|
     t.string "nombre"
@@ -21,6 +27,15 @@ ActiveRecord::Schema.define(version: 2021_03_11_221025) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "evasion"
+  end
+
+  create_table "objetos", force: :cascade do |t|
+    t.string "nombre"
+    t.boolean "usable"
+    t.boolean "equipable"
+    t.integer "valor"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "personajes", force: :cascade do |t|
