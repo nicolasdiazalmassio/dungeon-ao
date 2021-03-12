@@ -12,6 +12,8 @@ module DungeonAo
     config.load_defaults 6.1
     config.i18n.available_locales = [:en, :es]
     config.i18n.default_locale = :es
+    config.assets.enabled = true  
+    config.assets.paths << "#{Rails.root}/app/assets/fonts"  
 
     # Configuration for the application, engines, and railties goes here.
     #

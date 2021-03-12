@@ -45,7 +45,14 @@ class PersonajesController < ApplicationController
     @mp = porcentajemp
   end
 
+  def combate
+    
+  end
+
 end
+
+
+
 private
 def personaje_params
   params.require(:personaje).permit(:nombre, :clase, :nivel, :exp, :mana_max, :mana_actual, :hp_max, :hp_actual, :daño_min, :daño_max, :arma)

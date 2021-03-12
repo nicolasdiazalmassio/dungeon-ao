@@ -1,0 +1,21 @@
+
+ <br>
+<div class="container">
+  <div class="row  justify-content-center">
+<div class="text-center">
+<div class="card border-primary mb-3" style="max-width: 40rem;">
+  <div class="card-header"> <%= "Bienvenido aventurero " %></div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">¡Enhorabuena!</h5>
+    <p class="card-text"><%= "Tu aventura esta a punto de comenzar, como muchos jovenes has elegido convertirte en un #{@personaje.clase.downcase}.
+    Oriundo de la ciudad de Banderville, creciste escuchando las historias de los valientes aventureros mientras trabajabas limpiando en el gran
+    bar 'El meson hostigado'. Siempre ansioso de ser lo suficientemente grande para emprender tus propias aventuras por todo el continente.
+    Lo cual, esta a punto de suceder... "%></p>
+    
+  </div>
+  <div class="card-footer bg-transparent border-primary"><button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Partir de la ciudad', etapa2_path(personaje: @personaje.id) %></button></div>
+  
+</div>
+</div>
+</div>
+</div>
