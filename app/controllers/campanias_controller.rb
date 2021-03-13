@@ -6,7 +6,7 @@ class CampaniasController < ApplicationController
   end
   
   def etapa2
-    
+    @bandera = params[:bandera]
   end
 
 end 

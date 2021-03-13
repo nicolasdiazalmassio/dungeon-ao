@@ -1,4 +1,6 @@
 class PersonajesController < ApplicationController
+  before_action :set_personaje, only:[:combate]
+  before_action :set_npc, only:[:combate]
   
 	def new
     @personaje = Personaje.new
@@ -46,6 +48,7 @@ class PersonajesController < ApplicationController
   end
 
   def combate
+
     
   end
 
@@ -68,4 +71,11 @@ def porcentajemp
   else
   mp = (@personaje.mana_actual/@personaje.mana_max)*100
   end
+end
+
+def set_personaje
+  @personaje = Personaje.find(params[:personaje])
+end
+def set_npc
+  @npc = Npc.find(params[:npc])
 end

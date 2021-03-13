@@ -4,13 +4,42 @@
   <div class="row  justify-content-center">
 <div class="text-center">
 <div class="card border-primary mb-3" style="max-width: 40rem;">
-  <div class="card-header"> <%= "Bienvenido aventurero " %></div>
+  <div class="card-header"> <%= " #{@personaje.nombre}, #{@personaje.clase}, Nivel: #{@personaje.nivel} Bandera #{@bandera} Item? #{@existe_item} " %></div>
   <div class="card-body text-primary">
-    <h5 class="card-title">¡Enhorabuena!</h5>
-    <p class="card-text"><%= "" %></p>
-    
+    <h5 class="card-title">Primeros pasos</h5>
+    <p class="card-text"><%= "El sol comienza a brillar en el cielo y comienzas a verlo desde tu ventana, recostado en tu cama
+    totalmente desvelado, sin haber podido pegar casi un ojo la noche anterior, pues este dia, no era uno cualquiera. Luego de vestirte y despedirte
+    de tu familia, emprendes camino hacia la puerta sur de la ciudad, donde trabajaban algunos de los guardias que concurrian habitualmente al bar.
+    " %></p>
+    <p class="card-text"><%= "¿Hoy emprendes tu viaje? Pregunto uno de tus conocidos, con una sonrisa de oreja a oreja le dijiste que si, y no solo eso
+    sino que serias el más grande de todos los aventureros que existieron. Luego de cruzar la gran puerta sur, decides no seguir el sendero para que 
+    la aventura sea más entretenida, luego de caminar por un tiempo te das cuenta de que estas en una granja y que hay 4 pollos que se acercan corriendo
+    hacia ti." %></p>
+    <p class="card-text">
+      <%= "Preparado para luchar te percatas de algo, en la emoción de partir, olvidaste tomar tu arma del pie de tu cama, afortunadamente,
+      reposando sobre la pared del granero ves"%>
+      <%if @personaje.clase  == "Mago"%> 
+        <%= "una Vara de fresno," %> 
+      <%end%> 
+      <%if @personaje.clase == "Guerrero"%>
+        <%="un Rastrillo,"%> 
+      <%end%> 
+      <%="la cuestion ahora es... ¿Lo tomas?" %>
+    </p>
   </div>
-  <div class="card-footer bg-transparent border-primary"><button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Partir de la ciudad', etapa2_path(personaje: @personaje.id) %></button></div>
+  <div class="card-footer bg-transparent border-primary">
+      <%if @personaje.clase  == "Mago" %>
+        <%if Inventario.where(personaje_id: @personaje.id, objeto_id: 4).first == nil  %>
+          <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Tomar la Vara de fresno', crear_obj_path(personaje: @personaje.id, objeto_id: 4, redirect: "/etapa2?personaje=1?bandera=true", bandera: true) %></button>
+        <%end%> 
+      <%end%> 
+      <%if @personaje.clase == "Guerrero" %>
+        <%if Inventario.where(personaje_id: @personaje.id, objeto_id: 3).first == nil %>
+          <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Tomar el Rastrillo', crear_obj_path(personaje: @personaje.id, objeto_id: 3, redirect: "/etapa2?personaje=1?bandera=true", bandera: true) %></button> 
+        <%end%>
+      <%end%>
+    <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Luchar con los pollos', combate_path(personaje: @personaje.id, npc: 1) %></button>
+  </div>
   
 </div>
 </div>

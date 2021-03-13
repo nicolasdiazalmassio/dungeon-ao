@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   resources :personajes
   get "etapa1", to: "campanias#etapa1"
   get "etapa2", to: "campanias#etapa2"
+  get "combate", to: "personajes#combate"
+  get "crear_obj", to: "inventarios#create"
+  post "crear_obj", to: "inventarios#create"
 end
