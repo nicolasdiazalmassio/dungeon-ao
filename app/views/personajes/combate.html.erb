@@ -1,2 +1,51 @@
-<h1> tu personaje es  <%= "#{@personaje.nombre}" %>  </h1>
-<h1> el npc es  <%= "#{@npc.nombre}" %>  </h1>
+<br>
+<div class="text-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <h2><%= "#{@personaje.nombre}" %></h2>
+        <%= image_tag("#{@personaje.clase}.jpg", class: "img-fluid img-thumbnail") %>
+        <h5><%= "Nivel: #{@personaje.nivel}" %></h5>
+        <h5> <%= "Vida: #{@personaje.hp_actual} / #{@personaje.hp_max}"%> </h5>
+        <h5> <%= "Mana: #{@personaje.mana_actual} / #{@personaje.mana_max}" %> </h5>
+        <h5> <%= "Daño: #{@personaje.daño_min} / #{@personaje.daño_max} " %> </h5>
+      </div>
+      <div class="col-4">
+        <h2><%= "#{@npc.nombre}" %></h2>
+        <%= image_tag("#{@npc.nombre}.jpg", class: "img-fluid img-thumbnail") %>
+        <h5> <%= "Vida: #{@npc.hp_actual} / #{@npc.hp_max}"%> </h5>
+        <h5> <%= "Daño: #{@npc.daño_min} / #{@npc.daño_max} " %> </h5>
+      </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Atacar', personajes_ataque_path(personaje: @personaje.id, npc: 1), method: :post  %></button>
+      <% if @personaje.clase == "Mago" %>
+    <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Magia', combate_path(personaje: @personaje.id, npc: 1) %></button>
+      <% end %>
+    <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Intentar huir', combate_path(personaje: @personaje.id, npc: 1) %></button>
+</div>
+<br>
+  <div class="card card-header results-block col-6">
+    <table class="col-md-12">
+      <tbody>
+        <% @personaje.objetos.select('objetos.*, inventarios.cantidad').each do |objeto| %>
+          <tr>
+            <td><strong> </strong> <%= image_tag("#{objeto.nombre}.jpg", class: "img-fluid img-thumbnail") %></td>
+            <td><strong> </strong> <%= "#{objeto.nombre}" %></td>
+            <td><strong>Cantidad: </strong> <%= "#{objeto.cantidad}" %></td>
+            <td><strong> </strong> 
+              <% if objeto.usable? %>
+                <%= link_to 'Usar', '#',
+                              class: "btn btn-sm btn-success", method: :post %>
+              <% else %>
+                <span class="badge badge-secondar">
+                  -
+                </span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+    </div>

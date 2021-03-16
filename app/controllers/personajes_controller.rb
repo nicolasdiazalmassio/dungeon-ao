@@ -1,6 +1,6 @@
 class PersonajesController < ApplicationController
-  before_action :set_personaje, only:[:combate]
-  before_action :set_npc, only:[:combate]
+  before_action :set_personaje, only:[:combate, :ataque]
+  before_action :set_npc, only:[:combate, :ataque]
   
 	def new
     @personaje = Personaje.new
@@ -43,13 +43,45 @@ class PersonajesController < ApplicationController
 
   def show
     @personaje = Personaje.find(params[:id])
-    @hp = porcentajehp
+    @hp = porcentajehp(@personaje)
     @mp = porcentajemp
   end
 
   def combate
-
+    @hp = porcentajehp(@personaje)
+    @mp = porcentajemp
+    @hp_npc = porcentajehp(@npc)
     
+  end
+
+  def ataque
+
+    daño_pj = rand @personaje.daño_min..@personaje.daño_max
+    daño_npc = rand @npc.daño_min..@npc.daño_max
+    hp_npc = @npc.hp_actual
+    hp_pj = @personaje.hp_actual
+    daño_realizado = 0
+    daño_recibido = 0
+
+      while hp_npc  > 0 && hp_pj > 0
+        hp_npc = hp_npc - daño_pj
+        daño_realizado = daño_realizado + daño_pj
+        if hp_npc > 0
+          hp_pj = hp_pj - daño_npc
+          daño_recibido = daño_recibido + daño_npc
+        end
+      end
+      
+      if hp_npc <=  0
+        flash[:notice] = "Has recibido #{daño_recibido} puntos de daño de la criatura y has realizado #{daño_realizado} puntos de daño.
+        ¡Enhorabuena! Has derrotado a #{@npc.nombre} "
+        @personaje.update_attribute(:hp_actual, hp_pj)
+        redirect_to etapa3_path(personaje: @personaje.id)
+      else
+        flash[:alert] = "Has sido derrotado por #{@npc.nombre} "
+        redirect_to etapa2_path(personaje: @personaje.id)
+      end
+
   end
 
 end
@@ -61,8 +93,8 @@ def personaje_params
   params.require(:personaje).permit(:nombre, :clase, :nivel, :exp, :mana_max, :mana_actual, :hp_max, :hp_actual, :daño_min, :daño_max, :arma)
 end
 
-def porcentajehp
-  hp = (@personaje.hp_actual/@personaje.hp_max)*100
+def porcentajehp(obj)
+  hp = (obj.hp_actual/obj.hp_max)*100
 end
 
 def porcentajemp
@@ -76,6 +108,7 @@ end
 def set_personaje
   @personaje = Personaje.find(params[:personaje])
 end
+
 def set_npc
   @npc = Npc.find(params[:npc])
 end
