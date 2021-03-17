@@ -25,27 +25,5 @@
     <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Intentar huir', combate_path(personaje: @personaje.id, npc: 1) %></button>
 </div>
 <br>
-  <div class="card card-header results-block col-6">
-    <table class="col-md-12">
-      <tbody>
-        <% @personaje.objetos.select('objetos.*, inventarios.cantidad').each do |objeto| %>
-          <tr>
-            <td><strong> </strong> <%= image_tag("#{objeto.nombre}.jpg", class: "img-fluid img-thumbnail") %></td>
-            <td><strong> </strong> <%= "#{objeto.nombre}" %></td>
-            <td><strong>Cantidad: </strong> <%= "#{objeto.cantidad}" %></td>
-            <td><strong> </strong> 
-              <% if objeto.usable? %>
-                <%= link_to 'Usar', '#',
-                              class: "btn btn-sm btn-success", method: :post %>
-              <% else %>
-                <span class="badge badge-secondar">
-                  -
-                </span>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-    </div>
+  <%= render "inventario" %>
+</div>

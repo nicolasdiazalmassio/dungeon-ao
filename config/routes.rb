@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get "crear_obj", to: "inventarios#create"
   post "crear_obj", to: "inventarios#create"
   post "personajes/ataque"
+  delete "inventarios/usar"
 end

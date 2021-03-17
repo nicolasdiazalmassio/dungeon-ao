@@ -1,0 +1,23 @@
+  <div class="card card-header results-block col-6">
+    <table class="col-md-12">
+      <tbody>
+        <% @personaje.objetos.select('objetos.*, inventarios.cantidad').each do |objeto| %>
+          <tr>
+            <td><strong> </strong> <%= image_tag("#{objeto.nombre}.jpg", class: "img-fluid img-thumbnail") %></td>
+            <td><strong> </strong> <%= "#{objeto.nombre}" %></td>
+            <td><strong>Cantidad: </strong> <%= "#{objeto.cantidad}" %></td>
+            <td><strong> </strong> 
+              <% if objeto.usable? %>
+                <%= link_to 'Usar', inventarios_usar_path(personaje: @personaje.id, objeto: objeto.id),
+                              class: "btn btn-sm btn-success", method: :delete %>
+              <% else %>
+                <span class="badge badge-secondar">
+                  -
+                </span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
