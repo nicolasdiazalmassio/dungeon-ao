@@ -14,7 +14,7 @@
           </div>
           <br>
           <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Ver estadisticas', personaje_path(personaje) %></button>
-          <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Entrar en campaña', etapa1_path(personaje: personaje.id) %></button>
+          <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Entrar en campaña', cual_etapa_path(personaje: personaje.id) %></button>
         </div>
         <div class="card-footer text-muted">
           <%= "Nivel: #{personaje.nivel} " %>

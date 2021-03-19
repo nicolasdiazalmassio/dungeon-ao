@@ -30,12 +30,12 @@
   <div class="card-footer bg-transparent border-primary">
       <%if @personaje.clase  == "Mago" %>
         <%if Inventario.where(personaje_id: @personaje.id, objeto_id: 4).first == nil  %>
-          <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Tomar la Vara de fresno', crear_obj_path(personaje: @personaje.id, objeto_id: 4, redirect: "/etapa2?personaje=1?bandera=true", bandera: true) %></button>
+          <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Tomar la Vara de fresno', crear_obj_path(personaje: @personaje.id, objeto_id: 4) %></button>
         <%end%> 
       <%end%> 
       <%if @personaje.clase == "Guerrero" %>
         <%if Inventario.where(personaje_id: @personaje.id, objeto_id: 3).first == nil %>
-          <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Tomar el Rastrillo', crear_obj_path(personaje: @personaje.id, objeto_id: 3, redirect: "/etapa2?personaje=1?bandera=true", bandera: true) %></button> 
+          <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Tomar el Rastrillo', crear_obj_path(personaje: @personaje.id, objeto_id: 3) %></button> 
         <%end%>
       <%end%>
     <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Luchar con los pollos', combate_path(personaje: @personaje.id, npc: 1) %></button>

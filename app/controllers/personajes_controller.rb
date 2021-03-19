@@ -12,6 +12,8 @@ class PersonajesController < ApplicationController
       @personaje.usuario = current_usuario
       @personaje.nivel = 1
       @personaje.exp = 0
+      @personaje.etapa_actual = 1
+      @personaje.oro = 0
       if @personaje.clase == "Guerrero"
         @personaje.hp_actual = 30
         @personaje.hp_max = 30
@@ -76,10 +78,12 @@ class PersonajesController < ApplicationController
         flash[:notice] = "Has recibido #{daño_recibido} puntos de daño de la criatura y has realizado #{daño_realizado} puntos de daño.
         ¡Enhorabuena! Has derrotado a #{@npc.nombre} "
         @personaje.update_attribute(:hp_actual, hp_pj)
-        redirect_to etapa3_path(personaje: @personaje.id)
+        @personaje.etapa_actual = @personaje.etapa_actual + 1
+        @personaje.save
+        redirect_to cual_etapa_path(personaje: @personaje.id)
       else
         flash[:alert] = "Has sido derrotado por #{@npc.nombre} "
-        redirect_to etapa2_path(personaje: @personaje.id)
+        redirect_to cual_etapa_path(personaje: @personaje.id)
       end
 
   end

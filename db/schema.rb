@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_12_135147) do
+ActiveRecord::Schema.define(version: 2021_03_19_153909) do
 
   create_table "inventarios", force: :cascade do |t|
     t.integer "personaje_id"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 2021_03_12_135147) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "usuario_id"
     t.decimal "evasion"
+    t.integer "oro"
+    t.integer "etapa_actual"
   end
 
   create_table "usuarios", force: :cascade do |t|

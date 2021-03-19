@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :usuarios
   root 'pages#home'
   resources :personajes
+  get "cual_etapa", to: "campanias#cual_etapa"
   get "etapa1", to: "campanias#etapa1"
   get "etapa2", to: "campanias#etapa2"
   get "etapa3", to: "campanias#etapa3"

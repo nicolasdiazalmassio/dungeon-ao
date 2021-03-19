@@ -10,7 +10,7 @@ class InventariosController < ApplicationController
       @nuevoitem.save
       @existe_item = true
     end
-    redirect_to params[:redirect]
+    redirect_to cual_etapa_path(personaje: @personaje.id)
   end
 
   def usar

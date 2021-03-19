@@ -13,7 +13,9 @@
     Lo cual, esta a punto de suceder... "%></p>
     
   </div>
-  <div class="card-footer bg-transparent border-primary"><button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Partir de la ciudad', etapa2_path(personaje: @personaje.id, bandera: nil) %></button></div>
+  <%@personaje.etapa_actual = @personaje.etapa_actual + 1 %>
+  <%@personaje.save %>
+  <div class="card-footer bg-transparent border-primary"><button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Partir de la ciudad', cual_etapa_path(personaje: @personaje.id) %></button></div>
   
 </div>
 </div>
