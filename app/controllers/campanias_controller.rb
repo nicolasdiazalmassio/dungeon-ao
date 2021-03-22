@@ -1,12 +1,14 @@
 class CampaniasController < ApplicationController
   before_action :set_personaje
+  before_action :requiere_personaje
+  before_action :requiere_mismo_personaje
   
   def etapa1
-    
   end
-  
   def etapa2
-    @bandera = params[:bandera]
+  end
+  def etapa3
+
   end
 
 
@@ -34,5 +36,21 @@ end
 private
 
 def set_personaje
-  @personaje = Personaje.find(params[:personaje])
+  @personaje = Personaje.find_by_id(params[:personaje])
+  if !@personaje
+    flash[:alert] = "El personaje no existe"
+    redirect_to root_path
+  end
+end
+
+def requiere_mismo_personaje
+  if @personaje
+    if personaje_actual.id != @personaje.id
+      flash[:alert] = "Solo puedes jugar con el personaje que iniciaste sesion"
+      redirect_to personajes_path
+    end
+  else
+    flash[:alert] = "El personaje no existe"
+    redirect_to root_path
+  end
 end

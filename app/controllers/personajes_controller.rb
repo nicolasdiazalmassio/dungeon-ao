@@ -110,9 +110,9 @@ def porcentajemp
 end
 
 def set_personaje
-  @personaje = Personaje.find(params[:personaje])
+  @personaje = Personaje.find_by_id(params[:personaje])
 end
 
 def set_npc
-  @npc = Npc.find(params[:npc])
+  @npc = Npc.find_by_id(params[:npc])
 end

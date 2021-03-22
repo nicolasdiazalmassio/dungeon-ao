@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   post "crear_obj", to: "inventarios#create"
   post "personajes/ataque"
   delete "inventarios/usar"
+  get "session_personaje", to: "sessions#create"
+  delete "salir_session_personaje", to: "sessions#destroy"
 end

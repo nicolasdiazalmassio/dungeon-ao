@@ -35,7 +35,7 @@ private
   end
 
   def set_personaje
-    @personaje = Personaje.find(params[:personaje])
+    @personaje = Personaje.find_by_id(params[:personaje])
   end
 
   def efecto_objeto(obj, pj)
